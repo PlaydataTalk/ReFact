@@ -1,2 +1,0 @@
-this repo is for code refactoring of PDT project
-:
