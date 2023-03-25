@@ -1,7 +1,5 @@
 package pdt.entity;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,52 +29,36 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@ToString
 @Transactional
 @Entity
 public class User {
-	
+
 	@Id
 	@Column(nullable = false)
-	private String userId;
-	
-	//@Column(nullable = false)
-	//private String pw;
+	private String userEmail;
+
+	@Column(nullable = false, columnDefinition = "LONGTEXT")
+	private String userPassword;
 
 	@Column(nullable = false)
-	private String name;
-	
+	private String userName;
+
 	@Column(nullable = true)
-	private String imgUrl;
-	
+	private String userImgUrl;
+
 	@Column(nullable = true, columnDefinition = "LONGTEXT")
 	private String idToken;
-	
-	@OneToMany(
-	        mappedBy = "userId",
-	        fetch = FetchType.LAZY,
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
-	private List<Post> post = new ArrayList<>();
-	
-	@OneToMany(
-	        mappedBy = "userId",
-	       fetch = FetchType.LAZY,
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+	private final List<Post> post = new ArrayList<>();
+
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
-	private List<Ilike> ilike = new ArrayList<>();
-	
-	@OneToMany(
-	        mappedBy = "userId",
-	        fetch = FetchType.LAZY,
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+	private final List<Ilike> ilike = new ArrayList<>();
+
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
-	private List<Reply> reply = new ArrayList<>();
+	private final List<Reply> reply = new ArrayList<>();
 
 }

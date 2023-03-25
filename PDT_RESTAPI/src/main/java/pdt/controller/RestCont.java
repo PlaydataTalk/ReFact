@@ -128,7 +128,7 @@ public class RestCont {
 
 	@RequestMapping("/ilike")
 	public Long addLike(@RequestParam("userId") User user, Model model, @RequestParam("postId") Post post) {
-		boolean a = ilikeService.addLike(user.getUserId(), post);
+		boolean a = ilikeService.addLike(user.getUserEmail(), post);
 		System.out.println(a);
 		if (a) {
 			postRepository.countLike(post.getPostId());

@@ -23,7 +23,7 @@ public class UserServiceImp implements UserService {
 
 	public User getUser(User user) {
 		//System.out.println(userRepo.findById(user.getUserId()).get());
-		return userRepo.findById(user.getUserId()).get();
+		return userRepo.findById(user.getUserEmail()).get();
 	}
 
 	public void updateUser(User user) {
@@ -32,16 +32,16 @@ public class UserServiceImp implements UserService {
 		 * update
 		 * 
 		 */
-		User findUser = userRepo.findById(user.getUserId()).get();
+		User findUser = userRepo.findById(user.getUserEmail()).get();
 
 		//findUser.setPw(user.getPw());
-		findUser.setName(user.getName());
+		findUser.setUserName(user.getUserName());
 		//findUser.setImgUrl(user.getImgUrl());
 		userRepo.save(findUser);
 	}
 
 	public void deleteUser(User user) {
-		userRepo.deleteById(user.getUserId());
+		userRepo.deleteById(user.getUserEmail());
 	}
 
 }
